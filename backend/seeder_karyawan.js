@@ -234,7 +234,14 @@ const karyawanData = [
     { nama_lengkap: "Kossa Dean Herry Pratama", role: "officer", pos: "Non-Terminal Protection", nip: "2407072", bandara: "Yogyakarta International Airport" },
     { nama_lengkap: "Arga Sugiarto", role: "officer", pos: "Non-Terminal Protection", nip: "2301452", bandara: "Yogyakarta International Airport" },
     { nama_lengkap: "Firmansyah", role: "officer", pos: "Non-Terminal Protection", nip: "2301455", bandara: "Yogyakarta International Airport" },
-    { nama_lengkap: "Rafdi Fitra Riza", role: "officer", pos: "Non-Terminal Protection", nip: "2503700", bandara: "Yogyakarta International Airport" }
+    { nama_lengkap: "Rafdi Fitra Riza", role: "officer", pos: "Non-Terminal Protection", nip: "2503700", bandara: "Yogyakarta International Airport" },
+    
+    { nama_lengkap: "YIA. OP", role: "superadmin", pos: "", nip: "", bandara: "Yogyakarta International Airport" },
+    { nama_lengkap: "YIA. OC", role: "superadmin", pos: "", nip: "", bandara: "Yogyakarta International Airport" },
+    { nama_lengkap: "Rahmad Riyadi HB", role: "admin", pos: "", nip: "", bandara: "Yogyakarta International Airport" },
+    { nama_lengkap: "Ida Ayu Wika Widyastusi", role: "admin", pos: "", nip: "", bandara: "Yogyakarta International Airport" },
+    { nama_lengkap: "Muhammad Yudha Abdillah", role: "admin", pos: "", nip: "", bandara: "Yogyakarta International Airport" },
+    
 ];
 
 async function seedKaryawan() {
@@ -265,7 +272,7 @@ async function seedKaryawan() {
         });
         
         console.log(`${karyawanData.length} karyawan berhasil ditambahkan ke database!`);
-        console.log('Password default untuk semua user: 123');
+        console.log('Password default untuk semua user: password123');
         console.log('Email format: [NIP]@yia.co.id');
         
     } catch (error) {
