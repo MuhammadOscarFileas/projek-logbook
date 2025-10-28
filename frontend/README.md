@@ -1,4 +1,4 @@
-# YOJO Log Book System - Frontend
+# Aviation Security (AVSEC) Log Book System - Frontend
 
 A React-based frontend application for managing log book entries, activities, and reports with role-based access control.
 
@@ -256,3 +256,4 @@ The application can be deployed to any static hosting service:
 ## License
 
 This project is part of the YOJO Log Book System.
+
