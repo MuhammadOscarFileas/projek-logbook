@@ -1,6 +1,7 @@
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { Op } from "sequelize";
 
 export const countUserByRole = async (req, res) => {
   try {
@@ -159,13 +160,32 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const { nip, password } = req.body;
-    const user = await User.findOne({ where: { nip } });
-    if (!user) return res.status(404).json({ error: "User not found" });
+    const { identifier, nip, nama_lengkap, password } = req.body;
+    
+    // Determine login identifier - prioritize 'identifier' field, then 'nip', then 'nama_lengkap'
+    let loginIdentifier = identifier || nip || nama_lengkap;
+    
+    if (!loginIdentifier || !password) {
+      return res.status(400).json({ 
+        error: "Login memerlukan identifier (NIP atau nama lengkap) dan password" 
+      });
+    }
+    
+    // Search user by NIP or nama_lengkap using OR condition
+    const user = await User.findOne({ 
+      where: { 
+        [Op.or]: [
+          { nip: loginIdentifier },
+          { nama_lengkap: loginIdentifier }
+        ]
+      } 
+    });
+    
+    if (!user) return res.status(404).json({ error: "User tidak ditemukan" });
     
     // Compare password with hashed password using bcrypt
     const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) return res.status(401).json({ error: "Invalid password" });
+    if (!isPasswordValid) return res.status(401).json({ error: "Password salah" });
     
     // Generate JWT token
     const accessToken = jwt.sign(
@@ -180,10 +200,11 @@ export const login = async (req, res) => {
     );
     
     res.json({ 
-      message: "Login success", 
+      message: "Login berhasil", 
       token: accessToken,
       user: {
         user_id: user.user_id,
+        nip: user.nip,
         nama_lengkap: user.nama_lengkap,
         email: user.email,
         role: user.role,

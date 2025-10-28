@@ -280,3 +280,4 @@ async function seedKaryawan() {
 
 // Jalankan seeder
 seedKaryawan();
+

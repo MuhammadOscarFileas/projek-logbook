@@ -245,7 +245,8 @@ const startServer = async () => {
   try {
     await db.authenticate();
     console.log("✅ Database connected...");
-    await db.sync({ alter: true });
+    console.log("🔄 Syncing database...");
+    await db.sync({ force: true });
     app.listen(PORT, "0.0.0.0", () => {
       console.log(`🚀 Server berjalan di http://localhost:${PORT}`);
     });
