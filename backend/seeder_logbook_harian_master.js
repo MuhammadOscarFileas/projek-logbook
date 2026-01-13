@@ -2,7 +2,10 @@ import LogbookHarianMaster from './models/logbook_harian_master.js';
 import UraianTugas from './models/uraian_tugas.js';
 import UraianInventaris from './models/uraian_inventaris.js';
 import db from './config/database.js';
-import './models/association.js';
+
+// Definisikan relasi untuk seeder (menghindari circular dependency dari association.js)
+LogbookHarianMaster.hasMany(UraianTugas, { foreignKey: "logbook_harian_master_id", as: "uraian_tugas_list" });
+LogbookHarianMaster.hasMany(UraianInventaris, { foreignKey: "logbook_harian_master_id", as: "uraian_inventaris_list" });
 
 // Data dummy untuk logbook_harian_master
 const logbookData = {
