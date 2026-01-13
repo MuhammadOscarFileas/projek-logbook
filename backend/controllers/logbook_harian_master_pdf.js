@@ -415,7 +415,9 @@ export const exportLogbookHarianMasterPDF = async (req, res) => {
     if (process.env.CHROME_PATH) {
       launchOptions.executablePath = process.env.CHROME_PATH;
     }
+    
     const browser = await puppeteer.launch({
+      executablePath: process.env.CHROME_PATH,
       headless: "new",
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
