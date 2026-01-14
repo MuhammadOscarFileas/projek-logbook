@@ -304,6 +304,24 @@ const PegawaiList = ({ onRegister, refresh }) => {
               <h3 className="text-lg font-medium text-gray-900 mb-4">Edit Pegawai</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Nama Pegawai</label>
+                  <input
+                    name="nama_lengkap"
+                    value={(editUser && editUser.user_id === expanded ? editUser.nama_lengkap : users.find(u => u.user_id === expanded)?.nama_lengkap) || ''}
+                    onChange={e => setEditUser({ ...(editUser && editUser.user_id === expanded ? editUser : users.find(u => u.user_id === expanded)), nama_lengkap: e.target.value, user_id: expanded })}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">NIP</label>
+                  <input
+                    name="nip"
+                    value={(editUser && editUser.user_id === expanded ? editUser.nip : users.find(u => u.user_id === expanded)?.nip) || ''}
+                    onChange={e => setEditUser({ ...(editUser && editUser.user_id === expanded ? editUser : users.find(u => u.user_id === expanded)), nip: e.target.value, user_id: expanded })}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
                   <select 
                     name="role" 
